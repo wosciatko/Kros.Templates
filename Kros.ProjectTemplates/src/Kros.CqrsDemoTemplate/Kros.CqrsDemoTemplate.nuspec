@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Kros.Templates.CqrsProjectDemo</id>
+    <version>1.0.0</version>
+    <description>
+      Create ASP.NET Web Demo project by CQRS pattern.
+    </description>
+    <authors>KROS a.s.</authors>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+    <title>Kros CQRS WebApi project template.</title>
+    <projectUrl>https://github.com/Kros-sk/Kros.Templates</projectUrl>
+    <iconUrl>https://en.gravatar.com/userimage/137934964/524e95fbd8c2e8779e02819ab6902bef.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright © KROS a.s.</copyright>
+    <tags>Kros;CQRS;MediatR;WebApi;ASP.NET-Core;template;demo</tags>
+  </metadata>
+  <files>
+    <file src="*\**" target="\" exclude="*\.vs\**\*.*;*\bin\**\*.*;*\obj\**\*.*"/>
+</files>
+</package>

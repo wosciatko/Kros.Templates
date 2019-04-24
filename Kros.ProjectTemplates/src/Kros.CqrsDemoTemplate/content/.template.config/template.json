@@ -1,0 +1,17 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Kros a.s.",
+  "classifications": [
+    "Web",
+    "WebAPI",
+    "KROS a.s.",
+    "CQRS",
+    "KORM",
+    "Demo"
+  ],
+  "identity": "Kros.CqrsDemoTemplate",
+  "name": "Kros CQRS Demo ASP.NET Core Web API",
+  "shortName": "kros-cqrs-demo",
+  "sourceName": "Kros.CqrsDemoTemplate",
+  "preferNameDirectory": true
+}
