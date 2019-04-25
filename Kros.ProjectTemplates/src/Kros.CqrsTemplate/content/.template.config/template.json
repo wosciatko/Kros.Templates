@@ -1,0 +1,34 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Kros a.s.",
+  "classifications": [
+    "Web",
+    "WebAPI",
+    "KROS a.s.",
+    "CQRS",
+    "KORM"
+  ],
+  "identity": "Kros.CqrsTemplate",
+  "name": "Kros CQRS ASP.NET Core Web API",
+  "shortName": "kros-cqrs",
+  "sourceName": "Kros.CqrsTemplate",
+  "preferNameDirectory": true,
+  "symbols": {
+    "entityName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Set main entity name. For exampe: Person",
+      "replaces": "RRREntityNameRRR_",
+      "fileRename": "RRREntityNameRRR_",
+      "isRequired": true
+    },
+    "entityNamePlural": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Set main entity name in plural. For exampe: People",
+      "replaces": "RRREntityNameRRR_Plural_",
+      "fileRename": "RRREntityNameRRR_Plural_",
+      "isRequired": true
+    }
+  }
+}

@@ -6,31 +6,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DocumentationFile>$(OutDir)\Kros.CqrsDemoTemplate.xml</DocumentationFile>
+    <DocumentationFile>$(OutDir)\Kros.CqrsTemplate.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Infrastructure\SqlScripts\20190401001_AddToDosTable.sql" />
-    <None Remove="Infrastructure\SqlScripts\20190403001_AddUserIdColumn.sql" />
-    <None Remove="Infrastructure\SqlScripts\20190403002_InserDummyToDos.sql" />
-    <None Remove="Infrastructure\SqlScripts\20190411001_ChangeDateTimeToDateTimeOffset.sql" />
-    <None Remove="Infrastructure\SqlScripts\20190411002_AddLastChangeColumn.sql" />
+    <None Remove="Infrastructure\SqlScripts\20190424001_InitializationScript.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Infrastructure\SqlScripts\20190401001_AddToDosTable.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Infrastructure\SqlScripts\20190403001_AddUserIdColumn.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Infrastructure\SqlScripts\20190403002_InserDummyToDos.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Infrastructure\SqlScripts\20190411001_ChangeDateTimeToDateTimeOffset.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Infrastructure\SqlScripts\20190411002_AddLastChangeColumn.sql">
+    <EmbeddedResource Include="Infrastructure\SqlScripts\20190424001_InitializationScript.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
@@ -59,28 +43,5 @@
     <PackageReference Include="Scrutor" Version="3.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Connected Services\" />
   </ItemGroup>
 </Project>
