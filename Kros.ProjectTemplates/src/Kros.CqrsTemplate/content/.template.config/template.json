@@ -20,7 +20,8 @@
       "description": "Set main entity name. For exampe: Person",
       "replaces": "RRREntityNameRRR_",
       "fileRename": "RRREntityNameRRR_",
-      "isRequired": true
+      "isRequired": false,
+      "defaultValue": "Value"
     },
     "entityNamePlural": {
       "type": "parameter",
@@ -28,7 +29,8 @@
       "description": "Set main entity name in plural. For exampe: People",
       "replaces": "RRREntityNameRRR_Plural_",
       "fileRename": "RRREntityNameRRR_Plural_",
-      "isRequired": true
+      "isRequired": false,
+      "defaultValue": "Values"
     }
   }
 }
