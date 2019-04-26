@@ -3,7 +3,7 @@
 ## About
 `Kros.Templates.CqrsProjectDemo` is a template to create a demo project according to the CQRS pattern.
 Create **ToDo** sample demo ASP.NET Core WebApi application with our recommended directory structure, packages, configuration and basic logic.
-More info about the project structure and CQRS can be read in [demo example]([https://link](https://github.com/Kros-sk/Kros.AspNetCore.BestPractices/blob/master/README.md)).
+More info about the project structure and CQRS can be read in [demo example](https://github.com/Kros-sk/Kros.AspNetCore.BestPractices/blob/master/README.md).
 
 ## Quick start
 
