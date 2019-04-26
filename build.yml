@@ -72,6 +72,8 @@ steps:
       command: 'pack'
       searchPatternPack: '**/$(project.current).nuspec'
 
+  - powershell: echo $(project.current.Nupkg)
+  
   - task: CopyFiles@2
     displayName: 'Copy package files to staging directory'
     inputs:
