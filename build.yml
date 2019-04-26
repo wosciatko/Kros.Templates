@@ -15,11 +15,11 @@ variables:
   - name: buildConfiguration
     value: 'Release'
   - name: project.Cqrs
-    value: 'Kros.CqrsTemplate'
+    value: 'CqrsTemplate'
   - name: project.CqrsDemo
-    value: 'Kros.CqrsDemoTemplate'
+    value: 'CqrsDemoTemplate'
   - name: 'project.Current'
-    value: 'Kros.CqrsTemplate'
+    value: 'CqrsTemplate'
 
 steps:
   # - powershell: echo '##vso[task.setvariable variable=project.Current]$(project.Cqrs)'
@@ -44,28 +44,28 @@ steps:
     displayName: 'Nuget restore'
     inputs:
       command: 'restore'
-      projects: '**/$(project.current).csproj'
+      projects: '**/$Kros.(project.current).csproj'
 
   - task: DotNetCoreCLI@2
     displayName: 'Build'
     inputs:
       command: build
-      projects: '**/$(project.current).csproj'
+      projects: '**/$Kros.(project.current).csproj'
       arguments: '--configuration $(BuildConfiguration) --no-restore'
 
   - task: NuGetCommand@2
     inputs:
       command: 'pack'
-      searchPatternPack: '**/$(project.current).nuspec'  
+      searchPatternPack: '**/$Kros.(project.current).nuspec'  
 
   - task: CopyFiles@2
     displayName: 'Copy package files to staging directory'
     inputs:
-      Contents: '**/$(project.current)*.nupkg'
+      Contents: '**/$Kros.Templates.(project.current)*.nupkg'
       TargetFolder: '$(build.artifactStagingDirectory)'
       FlattenFolders: true
 
-  - template: steps/nuget-push.yml@templates
-    parameters:
-      feed: '$(nuget.feed)'
-      packages: '$(Build.ArtifactStagingDirectory)/$(project.Current)*.nupkg'
+  # - template: steps/nuget-push.yml@templates
+  #   parameters:
+  #     feed: '$(nuget.feed)'
+  #     packages: '$(Build.ArtifactStagingDirectory)/$Kros.Templates.(project.Current)*.nupkg'
