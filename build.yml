@@ -56,7 +56,9 @@ steps:
   - task: NuGetCommand@2
     inputs:
       command: 'pack'
-      searchPatternPack: '**/Kros.$(project.current).nuspec'  
+      searchPatternPack: '**/Kros.$(project.current).nuspec'
+
+  - powershell: echo Kros.$(project.current).nuspec
 
   - task: CopyFiles@2
     displayName: 'Copy package files to staging directory'
