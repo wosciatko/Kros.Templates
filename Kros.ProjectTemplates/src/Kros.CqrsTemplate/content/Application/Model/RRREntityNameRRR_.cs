@@ -12,7 +12,7 @@ namespace Kros.CqrsTemplate.Application.Model
         /// <summary>
         /// Id.
         /// </summary>
-        [Key(autoIncrementMethodType: AutoIncrementMethodType.Custom)]
+        [Key(autoIncrementMethodType: AutoIncrementMethodType.Identity)]
         public int Id { get; set; }
     }
 }
