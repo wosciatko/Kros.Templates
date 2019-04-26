@@ -13,5 +13,14 @@
   "name": "Kros CQRS Demo ASP.NET Core Web API",
   "shortName": "kros-cqrs-demo",
   "sourceName": "Kros.CqrsDemoTemplate",
-  "preferNameDirectory": true
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [ "README.md" ]
+        }
+      ]
+    }
+  ]
 }
