@@ -32,5 +32,14 @@
       "isRequired": false,
       "defaultValue": "Values"
     }
-  }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [ "README.md" ]
+        }
+      ]
+    }
+  ]
 }
