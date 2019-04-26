@@ -79,9 +79,9 @@ steps:
     inputs:
       Contents: '**/$(project.current.Nupkg)*.nupkg'
       TargetFolder: '$(build.artifactStagingDirectory)'
-      FlattenFolders: false
+      FlattenFolders: true
 
-  # - template: steps/nuget-push.yml@templates
-  #   parameters:
-  #     feed: '$(nuget.feed)'
-  #     packages: '$(Build.ArtifactStagingDirectory)/$Kros.Templates.(project.Current)*.nupkg'
+  - template: steps/nuget-push.yml@templates
+    parameters:
+      feed: '$(nuget.feed)'
+      packages: '$(Build.ArtifactStagingDirectory)/$(project.Current.Nupkg)*.nupkg'
