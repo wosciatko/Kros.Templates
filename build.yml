@@ -73,7 +73,7 @@ steps:
       searchPatternPack: '**/$(project.current).nuspec'
 
   - powershell: echo $(project.current.Nupkg)
-  
+
   - task: CopyFiles@2
     displayName: 'Copy package files to staging directory'
     inputs:
@@ -81,7 +81,7 @@ steps:
       TargetFolder: '$(build.artifactStagingDirectory)'
       FlattenFolders: true
 
-  # - template: steps/nuget-push.yml@templates
-  #   parameters:
-  #     feed: '$(nuget.feed)'
-  #     packages: '$(Build.ArtifactStagingDirectory)/$Kros.Templates.(project.Current)*.nupkg'
+  - template: steps/nuget-push.yml@templates
+    parameters:
+      feed: '$(nuget.feed)'
+      packages: '$(Build.ArtifactStagingDirectory)/$Kros.Templates.(project.Current)*.nupkg'
