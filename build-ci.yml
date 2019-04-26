@@ -4,7 +4,7 @@ trigger:
     include:
       - master
 
-pool: 'VS2017-Win2016'
+pool: Default
 
 variables:
   - group: Nuget
