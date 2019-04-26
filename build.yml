@@ -15,11 +15,17 @@ variables:
   - name: buildConfiguration
     value: 'Release'
   - name: project.Cqrs
-    value: 'CqrsTemplate'
+    value: 'Kros.CqrsTemplate'
+  - name: 'project.Cqrs.Nupkg'
+    value: 'Kros.Templates.CqrsProject'
   - name: project.CqrsDemo
-    value: 'CqrsDemoTemplate'
+    value: 'Kros.CqrsDemoTemplate'
+  - name: 'project.CqrsDemo.Nupkg'
+    value: 'Kros.Templates.CqrsProjectDemo'
   - name: 'project.Current'
-    value: 'CqrsTemplate'
+    value: 'Kros.CqrsTemplate'
+  - name: 'project.Current.Nupkg'
+    value: 'Kros.Templates.CqrsProject'
 
 steps:
   # - powershell: echo '##vso[task.setvariable variable=project.Current]$(project.Cqrs)'
@@ -28,6 +34,14 @@ steps:
 
   # - powershell: echo '##vso[task.setvariable variable=project.Current]$(project.CqrsDemo)'
   #   displayName: 'Set project: $(project.CqrsDemo)'
+  #   condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/cqrs-demo-v')
+
+  # - powershell: echo '##vso[task.setvariable variable=project.Current.Nupkg]$(project.Cqrs.Nupkg)'
+  #   displayName: 'Set nupkg project: $(project.Cqrs.Nupkg)'
+  #   condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/cqrs-v')
+
+  # - powershell: echo '##vso[task.setvariable variable=project.Current.Nupkg]$(project.CqrsDemo.Nupkg)'
+  #   displayName: 'Set nupkg project: $(project.CqrsDemo.Nupkg)'
   #   condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/cqrs-demo-v')
 
   - script: |
@@ -44,26 +58,24 @@ steps:
     displayName: 'Nuget restore'
     inputs:
       command: 'restore'
-      projects: '**/Kros.$(project.current).csproj'
+      projects: '**/$(project.current).csproj'
 
   - task: DotNetCoreCLI@2
     displayName: 'Build'
     inputs:
       command: build
-      projects: '**/Kros.$(project.current).csproj'
+      projects: '**/$(project.current).csproj'
       arguments: '--configuration $(BuildConfiguration) --no-restore'
 
   - task: NuGetCommand@2
     inputs:
       command: 'pack'
-      searchPatternPack: '**/Kros.$(project.current).nuspec'
-
-  - powershell: echo Kros.Templates.$(project.current)*.nupkg
+      searchPatternPack: '**/$(project.current).nuspec'
 
   - task: CopyFiles@2
     displayName: 'Copy package files to staging directory'
     inputs:
-      Contents: '**/Kros.Templates.$(project.current)*.nupkg'
+      Contents: '**/$(project.current.Nupkg)*.nupkg'
       TargetFolder: '$(build.artifactStagingDirectory)'
       FlattenFolders: true
 
