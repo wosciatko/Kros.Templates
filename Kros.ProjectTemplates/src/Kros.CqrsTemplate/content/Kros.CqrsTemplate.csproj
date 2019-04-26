@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DocumentationFile>$(OutDir)\Kros.CqrsTemplate.xml</DocumentationFile>
+    <DocumentationFile>$(OutDir)Kros.CqrsTemplate.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
