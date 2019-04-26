@@ -30,7 +30,7 @@ steps:
   #   displayName: 'Set project: $(project.CqrsDemo)'
   #   condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/cqrs-demo-v')
 
-  - powershell: echo '$(project.Cqrs)'
+  - powershell: echo $(project.Cqrs)
 
   - script: |
       echo No project was specified.
