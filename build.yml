@@ -56,7 +56,7 @@ steps:
   - task: NuGetCommand@2
     inputs:
       command: 'pack'
-      searchPatternPack: '**/$(project.current)*.nuspec'  
+      searchPatternPack: '**/$(project.current).nuspec'  
 
   - task: CopyFiles@2
     displayName: 'Copy package files to staging directory'
