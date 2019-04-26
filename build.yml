@@ -44,24 +44,24 @@ steps:
     displayName: 'Nuget restore'
     inputs:
       command: 'restore'
-      projects: '**/$Kros.(project.current).csproj'
+      projects: '**/Kros.$(project.current).csproj'
 
   - task: DotNetCoreCLI@2
     displayName: 'Build'
     inputs:
       command: build
-      projects: '**/$Kros.(project.current).csproj'
+      projects: '**/Kros.$(project.current).csproj'
       arguments: '--configuration $(BuildConfiguration) --no-restore'
 
   - task: NuGetCommand@2
     inputs:
       command: 'pack'
-      searchPatternPack: '**/$Kros.(project.current).nuspec'  
+      searchPatternPack: '**/Kros.$(project.current).nuspec'  
 
   - task: CopyFiles@2
     displayName: 'Copy package files to staging directory'
     inputs:
-      Contents: '**/$Kros.Templates.(project.current)*.nupkg'
+      Contents: '**/Kros.Templates.$(project.current)*.nupkg'
       TargetFolder: '$(build.artifactStagingDirectory)'
       FlattenFolders: true
 
