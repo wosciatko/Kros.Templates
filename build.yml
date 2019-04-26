@@ -25,31 +25,31 @@ variables:
   - name: 'project.Current'
     value: 'Kros.CqrsTemplate'
   - name: 'project.Current.Nupkg'
-    value: 'Kros.Templates.CqrsProject'
+    value: ''
 
 steps:
-  # - powershell: echo '##vso[task.setvariable variable=project.Current]$(project.Cqrs)'
-  #   displayName: 'Set project: $(project.Cqrs)'
-  #   condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/cqrs-v')
+  - powershell: echo '##vso[task.setvariable variable=project.Current]$(project.Cqrs)'
+    displayName: 'Set project: $(project.Cqrs)'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/cqrs-v')
 
-  # - powershell: echo '##vso[task.setvariable variable=project.Current]$(project.CqrsDemo)'
-  #   displayName: 'Set project: $(project.CqrsDemo)'
-  #   condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/cqrs-demo-v')
+  - powershell: echo '##vso[task.setvariable variable=project.Current]$(project.CqrsDemo)'
+    displayName: 'Set project: $(project.CqrsDemo)'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/cqrs-demo-v')
 
-  # - powershell: echo '##vso[task.setvariable variable=project.Current.Nupkg]$(project.Cqrs.Nupkg)'
-  #   displayName: 'Set nupkg project: $(project.Cqrs.Nupkg)'
-  #   condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/cqrs-v')
+  - powershell: echo '##vso[task.setvariable variable=project.Current.Nupkg]$(project.Cqrs.Nupkg)'
+    displayName: 'Set nupkg project: $(project.Cqrs.Nupkg)'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/cqrs-v')
 
-  # - powershell: echo '##vso[task.setvariable variable=project.Current.Nupkg]$(project.CqrsDemo.Nupkg)'
-  #   displayName: 'Set nupkg project: $(project.CqrsDemo.Nupkg)'
-  #   condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/cqrs-demo-v')
+  - powershell: echo '##vso[task.setvariable variable=project.Current.Nupkg]$(project.CqrsDemo.Nupkg)'
+    displayName: 'Set nupkg project: $(project.CqrsDemo.Nupkg)'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/cqrs-demo-v')
 
   - script: |
       echo No project was specified.
       echo Build must be triggered with correct tag and based on the tag name, the project is selected.
       echo Available tag names and their projects:
-      echo   - cqrs-v* - Kros.CqrsDemo
-      echo   - cqrs-demo-v* - Kros.CqrsDemoTemplate
+      echo   - cqrs-v* - Kros.Cqrs
+      echo   - cqrs-demo-v* - Kros.CqrsDemo
       exit 1
     displayName: 'Check project name'
     condition: eq(variables['project.Current'], '')
