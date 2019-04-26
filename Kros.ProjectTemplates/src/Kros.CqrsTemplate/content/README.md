@@ -3,7 +3,7 @@
 ## About
 `Kros.Templates.CqrsProject` is a template to create a project according to the CQRS pattern.
 Create ASP.NET Core WebApi application with our recommended directory structure, packages, configuration.
-It also creates basic commands, queries, a repository for entities that you can name using the `--entityName` and `--entityNamePlural` switches. More info about the project structure and CQRS can be read in [demo example]([https://link](https://github.com/Kros-sk/Kros.AspNetCore.BestPractices/blob/master/README.md)).
+It also creates basic commands, queries, a repository for entities that you can name using the `--entityName` and `--entityNamePlural` switches. More info about the project structure and CQRS can be read in [demo example](https://github.com/Kros-sk/Kros.AspNetCore.BestPractices/blob/master/README.md).
 
 ## Quick start
 
