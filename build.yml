@@ -72,14 +72,14 @@ steps:
       command: 'pack'
       searchPatternPack: '**/$(project.current).nuspec'
 
-  - powershell: echo $(project.current.Nupkg)
+  - powershell: echo **/$(project.current.Nupkg)*.nupkg
 
   - task: CopyFiles@2
     displayName: 'Copy package files to staging directory'
     inputs:
       Contents: '**/$(project.current.Nupkg)*.nupkg'
       TargetFolder: '$(build.artifactStagingDirectory)'
-      FlattenFolders: true
+      FlattenFolders: false
 
   - template: steps/nuget-push.yml@templates
     parameters:
