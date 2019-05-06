@@ -1,50 +1,35 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.BuilderMiddlewares;
+using Kros.AspNetCore;
+using Microsoft.Extensions.Logging;
 
 namespace Kros.CqrsDemoTemplate
 {
     /// <summary>
     /// Startup.
     /// </summary>
-    public class Startup
+    public class Startup: BaseStartup
     {
         /// <summary>
         /// Ctor.
         /// </summary>
         /// <param name="env">Environment.</param>
         public Startup(IHostingEnvironment env)
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddJsonFile($"appsettings.local.json", optional: true)
-                .AddEnvironmentVariables();
+            : base(env)
+        { }
 
-            Configuration = builder.Build();
-            Environment = env;
-        }
-
-        /// <summary>
-        /// Configuration.
-        /// </summary>
-        public IConfiguration Configuration { get; }
-
-        /// <summary>
-        /// Environment.
-        /// </summary>
-        public IHostingEnvironment Environment { get; }
 
         /// <summary>
         /// Configure IoC container.
         /// </summary>
         /// <param name="services">Service.</param>
-        public void ConfigureServices(IServiceCollection services)
+        public override void ConfigureServices(IServiceCollection services)
         {
+            base.ConfigureServices(services);
+
             services.AddWebApi()
                 .AddFluentValidation();
 
@@ -58,23 +43,18 @@ namespace Kros.CqrsDemoTemplate
 
             services.AddSwagger();
             services.AddDistributedCache(Configuration);
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAllOrigins",
-                    builder => builder.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
-            });
         }
 
         /// <summary>
-        /// Configure web api pipeline.
+        /// configure web api pipeline.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        /// <param name="env">Environment</param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        /// <param name="env">Environment.</param>
+        /// <param name="loggerFactory">The logger factory.</param>
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            base.Configure(app, loggerFactory);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
