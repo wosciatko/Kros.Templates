@@ -44,16 +44,15 @@ namespace Kros.CqrsTemplate
         }
 
         /// <summary>
-        /// configure web api pipeline.
+        /// Configure web api pipeline.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        /// <param name="env">Environment.</param>
         /// <param name="loggerFactory">The logger factory.</param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public override void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             base.Configure(app, loggerFactory);
 
-            if (env.IsDevelopment())
+            if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
