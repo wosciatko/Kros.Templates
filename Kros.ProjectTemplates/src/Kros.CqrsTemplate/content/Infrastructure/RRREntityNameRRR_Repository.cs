@@ -1,8 +1,9 @@
-﻿using Kros.KORM;
+﻿using Kros.CqrsTemplate.Domain;
+using Kros.KORM;
 using Kros.Utils;
 using System.Threading.Tasks;
 
-namespace Kros.CqrsTemplate.Application.Model
+namespace Kros.CqrsTemplate.Infrastructure
 {
     /// <summary>
     /// Repository for persistating <see cref="RRREntityNameRRR_"/>.

@@ -1,7 +1,7 @@
 ﻿using Kros.KORM.Metadata;
 using Kros.KORM.Metadata.Attribute;
 
-namespace Kros.CqrsTemplate.Application.Model
+namespace Kros.CqrsTemplate.Domain
 {
     /// <summary>
     /// RRREntityNameRRR_ model.
