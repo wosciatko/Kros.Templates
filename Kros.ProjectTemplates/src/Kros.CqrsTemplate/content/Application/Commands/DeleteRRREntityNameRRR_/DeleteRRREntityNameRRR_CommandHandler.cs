@@ -1,4 +1,4 @@
-﻿using Kros.CqrsTemplate.Application.Model;
+﻿using Kros.CqrsTemplate.Domain;
 using Kros.Utils;
 using MediatR;
 using System.Threading;

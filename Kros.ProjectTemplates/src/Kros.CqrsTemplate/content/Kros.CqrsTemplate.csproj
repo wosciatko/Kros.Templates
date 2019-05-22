@@ -10,11 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Infrastructure\SqlScripts\20190424001_InitializationScript.sql" />
+    <None Remove="SqlScripts\20190424001_InitializationScript.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Infrastructure\SqlScripts\20190424001_InitializationScript.sql">
+    <EmbeddedResource Include="SqlScripts\20190424001_InitializationScript.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

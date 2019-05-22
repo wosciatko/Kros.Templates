@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Routing;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Kros.CqrsTemplate.Controllers
+namespace Kros.CqrsTemplate.Application.Controllers
 {
     /// <summary>
     /// RRREntityNameRRR_Plural_ controller

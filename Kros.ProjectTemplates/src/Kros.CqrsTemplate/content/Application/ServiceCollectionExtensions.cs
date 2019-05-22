@@ -3,14 +3,10 @@ using Microsoft.Extensions.Configuration;
 using Kros.KORM.Extensions.Asp;
 using System.Reflection;
 using MediatR;
-using Kros.CqrsDemoTemplate.Application.Queries.PipeLines;
 using Kros.MediatR.Extensions;
-using Kros.CqrsDemoTemplate.Application.Commands.PipeLines;
 using System.IO;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
-using Microsoft.Extensions.Caching.Distributed;
-using Kros.CqrsDemoTemplate.Infrastructure;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -41,7 +37,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .InitDatabaseForIdGenerator()
                 .AddKormMigrations(configuration, o =>
                 {
-                    o.AddAssemblyScriptsProvider(Assembly.GetEntryAssembly(), "Kros.CqrsDemoTemplate.Infrastructure.SqlScripts");
+                    o.AddAssemblyScriptsProvider(Assembly.GetEntryAssembly(), "Kros.CqrsTemplate.SqlScripts");
                 })
                 .Migrate();
 
@@ -51,8 +47,6 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">DI container.</param>
         public static IServiceCollection AddMediatRDependencies(this IServiceCollection services)
             => services.AddMediatR(Assembly.GetExecutingAssembly())
-                .AddPipelineBehaviorsForRequest<IUserResourceQuery>()
-                .AddPipelineBehaviorsForRequest<IUserResourceCommand>()
                 .AddMediatRNullCheckPostProcessor();
 
         /// <summary>
@@ -62,8 +56,8 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddSwagger(this IServiceCollection services)
             => services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "ToDo API", Version = "v1" });
-                var filePath = Path.Combine(AppContext.BaseDirectory, "Kros.CqrsDemoTemplate.xml");
+                c.SwaggerDoc("v1", new Info { Title = "API", Version = "v1" });
+                var filePath = Path.Combine(AppContext.BaseDirectory, "Kros.CqrsTemplate.xml");
 
                 if (File.Exists(filePath))
                 {
@@ -71,31 +65,5 @@ namespace Microsoft.Extensions.DependencyInjection
                 }
                 c.AddFluentValidationRules();
             });
-
-        /// <summary>
-        /// Add distributed cache.
-        /// </summary>
-        /// <param name="services">DI container.</param>
-        /// <param name="configuration">Configuration.</param>
-        public static IServiceCollection AddDistributedCache(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.ConfigureOptions<DistributedCacheEntryOptions>(configuration);
-            var redisOptions = configuration.GetSection<RedisCacheOptions>();
-
-            if (redisOptions.UseRedis)
-            {
-                services.AddStackExchangeRedisCache(options =>
-                {
-                    options.Configuration = redisOptions.ConnectionString;
-                    options.InstanceName = redisOptions.InstanceName;
-                });
-            }
-            else
-            {
-                services.AddDistributedMemoryCache();
-            }
-
-            return services;
-        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Kros.CqrsTemplate.Application.Model
+namespace Kros.CqrsTemplate.Domain
 {
     /// <summary>
     /// Interface which describe repository for persistating <see cref="RRREntityNameRRR_"/>.
