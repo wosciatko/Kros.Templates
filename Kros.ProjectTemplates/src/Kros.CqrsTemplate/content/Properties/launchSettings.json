@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Kros.Esw.Authorization": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:9090/"
+    }
+  }
+}
