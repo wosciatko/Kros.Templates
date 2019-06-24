@@ -25,7 +25,7 @@ namespace Kros.CqrsTemplate.Application.Queries
             /// <summary>
             /// RRREntityNameRRR_ Id.
             /// </summary>
-            public int Id { get; set; }
+            public long Id { get; set; }
         }
     }
 }

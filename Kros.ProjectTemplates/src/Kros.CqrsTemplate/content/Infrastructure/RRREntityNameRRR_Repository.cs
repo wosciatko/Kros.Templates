@@ -44,7 +44,7 @@ namespace Kros.CqrsTemplate.Infrastructure
         }
 
         /// <inheritdoc />
-        public async Task DeleteRRREntityNameRRR_Async(int id)
+        public async Task DeleteRRREntityNameRRR_Async(long id)
         {
             var dbSet = _database.Query<RRREntityNameRRR_>().AsDbSet();
             dbSet.Delete(new RRREntityNameRRR_() { Id = id});

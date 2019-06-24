@@ -34,7 +34,7 @@ namespace Kros.CqrsTemplate.Application.Controllers
         [ProducesResponseType(200, Type = typeof(GetRRREntityNameRRR_Query.RRREntityNameRRR_))]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<GetRRREntityNameRRR_Query.RRREntityNameRRR_> GetRRREntityNameRRR_(int id)
+        public async Task<GetRRREntityNameRRR_Query.RRREntityNameRRR_> GetRRREntityNameRRR_(long id)
             => await this.SendRequest(new GetRRREntityNameRRR_Query(id));
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Kros.CqrsTemplate.Application.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult> UpdateRRREntityNameRRR_(int id, UpdateRRREntityNameRRR_Command command)
+        public async Task<ActionResult> UpdateRRREntityNameRRR_(long id, UpdateRRREntityNameRRR_Command command)
         {
             command.Id = id;
 
@@ -80,7 +80,7 @@ namespace Kros.CqrsTemplate.Application.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult> DeleteRRREntityNameRRR_(int id)
+        public async Task<ActionResult> DeleteRRREntityNameRRR_(long id)
         {
             await this.SendRequest(new DeleteRRREntityNameRRR_Command(id));
 

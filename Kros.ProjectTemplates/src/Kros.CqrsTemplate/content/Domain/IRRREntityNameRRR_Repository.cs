@@ -23,6 +23,6 @@ namespace Kros.CqrsTemplate.Domain
         /// Delete item by <paramref name="id"/>.
         /// </summary>
         /// <param name="id">Item id.</param>
-        Task DeleteRRREntityNameRRR_Async(int id);
+        Task DeleteRRREntityNameRRR_Async(long id);
     }
 }

@@ -13,6 +13,6 @@ namespace Kros.CqrsTemplate.Domain
         /// Id.
         /// </summary>
         [Key(autoIncrementMethodType: AutoIncrementMethodType.Identity)]
-        public int Id { get; set; }
+        public long Id { get; set; }
     }
 }
