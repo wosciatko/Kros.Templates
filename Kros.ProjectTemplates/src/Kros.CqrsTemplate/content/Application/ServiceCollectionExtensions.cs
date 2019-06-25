@@ -48,22 +48,5 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddMediatRDependencies(this IServiceCollection services)
             => services.AddMediatR(Assembly.GetExecutingAssembly())
                 .AddMediatRNullCheckPostProcessor();
-
-        /// <summary>
-        /// Add MediatR.
-        /// </summary>
-        /// <param name="services">DI container.</param>
-        public static IServiceCollection AddSwagger(this IServiceCollection services)
-            => services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "API", Version = "v1" });
-                var filePath = Path.Combine(AppContext.BaseDirectory, "Kros.CqrsTemplate.xml");
-
-                if (File.Exists(filePath))
-                {
-                    c.IncludeXmlComments(filePath);
-                }
-                c.AddFluentValidationRules();
-            });
     }
 }

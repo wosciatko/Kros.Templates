@@ -5,6 +5,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.BuilderMiddlewares;
 using Kros.AspNetCore;
 using Microsoft.Extensions.Logging;
+using Kros.Swagger.Extensions;
 
 namespace Kros.CqrsTemplate
 {
@@ -40,7 +41,7 @@ namespace Kros.CqrsTemplate
                 .AddClasses()
                 .AsMatchingInterface());
 
-            services.AddSwagger();
+            services.AddSwaggerDocumentation(Configuration);
         }
 
         /// <summary>
@@ -66,11 +67,7 @@ namespace Kros.CqrsTemplate
             app.UseKormMigrations();
             app.UseMvc();
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
-            });
+            app.UseSwaggerDocumentation(Configuration);
         }
     }
 }
