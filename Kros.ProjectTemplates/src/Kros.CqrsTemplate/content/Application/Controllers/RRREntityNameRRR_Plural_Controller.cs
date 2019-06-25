@@ -15,7 +15,7 @@ namespace Kros.CqrsTemplate.Application.Controllers
     [ApiController]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public class RRREntityNameRRR_Plural_Controller : ControllerBase
     {
         /// <summary>
