@@ -1,5 +1,6 @@
 ﻿using Kros.CqrsTemplate.Application.Commands;
 using Kros.CqrsTemplate.Application.Queries;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System.Collections.Generic;
@@ -12,13 +13,21 @@ namespace Kros.CqrsTemplate.Application.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public class RRREntityNameRRR_Plural_Controller : ControllerBase
     {
         /// <summary>
         /// Get RRREntityNameRRR_Plural_.
+        /// <response code="200">Ok.</response>
+        /// <response code="403">
+        /// Forbidden when user don't have permission for RRREntityNameRRR_Plural_.
+        /// </response>
         /// </summary>
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<GetAllRRREntityNameRRR_Plural_Query.RRREntityNameRRR_>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetAllRRREntityNameRRR_Plural_Query.RRREntityNameRRR_>))]
         public async Task<IEnumerable<GetAllRRREntityNameRRR_Plural_Query.RRREntityNameRRR_>> Get()
             => await this.SendRequest(new GetAllRRREntityNameRRR_Plural_Query());
 
@@ -31,10 +40,9 @@ namespace Kros.CqrsTemplate.Application.Controllers
         /// </response>
         /// <response code="404">If ToDo with id <paramref name="id"/> doesn't exist.</response>
         [HttpGet("{id}", Name = nameof(GetRRREntityNameRRR_))]
-        [ProducesResponseType(200, Type = typeof(GetRRREntityNameRRR_Query.RRREntityNameRRR_))]
-        [ProducesResponseType(403)]
-        [ProducesResponseType(404)]
-        public async Task<GetRRREntityNameRRR_Query.RRREntityNameRRR_> GetRRREntityNameRRR_(int id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetRRREntityNameRRR_Query.RRREntityNameRRR_))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<GetRRREntityNameRRR_Query.RRREntityNameRRR_> GetRRREntityNameRRR_(long id)
             => await this.SendRequest(new GetRRREntityNameRRR_Query(id));
 
         /// <summary>
@@ -42,11 +50,14 @@ namespace Kros.CqrsTemplate.Application.Controllers
         /// </summary>
         /// <param name="command">Data for creating RRREntityNameRRR_.</param>
         /// <response code="201">Created. RRREntityNameRRR_ id in body.</response>
+        /// <response code="403">
+        /// Forbidden when user don't have permission for creating RRREntityNameRRR_.
+        /// </response>
         /// <returns>
         /// RRREntityNameRRR_ id.
         /// </returns>
         [HttpPost]
-        [ProducesResponseType(201)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> CreateToDo(CreateRRREntityNameRRR_Command command)
             => await this.SendCreateCommand(command, nameof(GetRRREntityNameRRR_));
 
@@ -55,13 +66,13 @@ namespace Kros.CqrsTemplate.Application.Controllers
         /// </summary>
         /// <param name="command">Data for creating RRREntityNameRRR_.</param>
         /// <param name="id">RRREntityNameRRR_ id.</param>
+        /// <response code="200">Updated.</response>
         /// <response code="403">Forbidden when user don't have permission for RRREntityNameRRR_ with <paramref name="id"/>.</response>
         /// <response code="404">If RRREntityNameRRR_ with id <paramref name="id"/> doesn't exist.</response>
         [HttpPut("{id}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(403)]
-        [ProducesResponseType(404)]
-        public async Task<ActionResult> UpdateRRREntityNameRRR_(int id, UpdateRRREntityNameRRR_Command command)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> UpdateRRREntityNameRRR_(long id, UpdateRRREntityNameRRR_Command command)
         {
             command.Id = id;
 
@@ -74,17 +85,17 @@ namespace Kros.CqrsTemplate.Application.Controllers
         /// Delete RRREntityNameRRR_.
         /// </summary>
         /// <param name="id">RRREntityNameRRR_ id.</param>
+        /// <response code="204">Deleted.</response>
         /// <response code="403">Forbidden when user don't have permission for RRREntityNameRRR_ with <paramref name="id"/>.</response>
         /// <response code="404">If RRREntityNameRRR_ with id <paramref name="id"/> doesn't exist.</response>
         [HttpDelete("{id}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(403)]
-        [ProducesResponseType(404)]
-        public async Task<ActionResult> DeleteRRREntityNameRRR_(int id)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> DeleteRRREntityNameRRR_(long id)
         {
             await this.SendRequest(new DeleteRRREntityNameRRR_Command(id));
 
-            return Ok();
+            return NoContent();
         }
     }
 }

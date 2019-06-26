@@ -10,7 +10,7 @@ namespace Kros.CqrsTemplate.Application.Commands
     /// <summary>
     /// Create RRREntityNameRRR_ Command Handler.
     /// </summary>
-    public class CreateRRREntityNameRRR_CommandHandler : IRequestHandler<CreateRRREntityNameRRR_Command, int>
+    public class CreateRRREntityNameRRR_CommandHandler : IRequestHandler<CreateRRREntityNameRRR_Command, long>
     {
         private readonly IRRREntityNameRRR_Repository _repository;
 
@@ -24,7 +24,7 @@ namespace Kros.CqrsTemplate.Application.Commands
         }
 
         /// <inheritdoc />
-        public async Task<int> Handle(CreateRRREntityNameRRR_Command request, CancellationToken cancellationToken)
+        public async Task<long> Handle(CreateRRREntityNameRRR_Command request, CancellationToken cancellationToken)
         {
             var item = request.Adapt<RRREntityNameRRR_>();
             await _repository.CreateRRREntityNameRRR_Async(item);

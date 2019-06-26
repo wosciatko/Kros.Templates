@@ -12,7 +12,7 @@ namespace Kros.CqrsTemplate.Application.Queries
         /// Ctor.
         /// </summary>
         /// <param name="id">RRREntityNameRRR_ id.</param>
-        public GetRRREntityNameRRR_Query(int id)
+        public GetRRREntityNameRRR_Query(long id)
         {
             RRREntityNameRRR_Id = id;
         }
@@ -20,7 +20,7 @@ namespace Kros.CqrsTemplate.Application.Queries
         /// <summary>
         /// RRREntityNameRRR_ id.
         /// </summary>
-        public int RRREntityNameRRR_Id { get; set; }
+        public long RRREntityNameRRR_Id { get; set; }
 
         /// <summary>
         /// RRREntityNameRRR_
@@ -31,7 +31,7 @@ namespace Kros.CqrsTemplate.Application.Queries
             /// <summary>
             /// RRREntityNameRRR_ Id.
             /// </summary>
-            public int Id { get; set; }
+            public long Id { get; set; }
         }
     }
 }

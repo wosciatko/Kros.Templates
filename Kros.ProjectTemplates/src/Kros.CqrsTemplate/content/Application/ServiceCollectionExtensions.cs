@@ -50,7 +50,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddMediatRNullCheckPostProcessor();
 
         /// <summary>
-        /// Add MediatR.
+        /// Add Swagger.
         /// </summary>
         /// <param name="services">DI container.</param>
         public static IServiceCollection AddSwagger(this IServiceCollection services)

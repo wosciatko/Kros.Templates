@@ -12,6 +12,6 @@ namespace Kros.CqrsTemplate.Application.Commands
         /// Id.
         /// </summary>
         [JsonIgnore]
-        public int Id { get; set; }
+        public long Id { get; set; }
     }
 }
