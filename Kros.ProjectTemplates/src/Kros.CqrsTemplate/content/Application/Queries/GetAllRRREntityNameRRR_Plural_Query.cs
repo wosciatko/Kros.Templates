@@ -1,4 +1,5 @@
-﻿using Kros.KORM.Metadata.Attribute;
+﻿using Kros.CqrsTemplate.Infrastructure;
+using Kros.KORM.Metadata.Attribute;
 using MediatR;
 using System.Collections.Generic;
 
@@ -19,7 +20,7 @@ namespace Kros.CqrsTemplate.Application.Queries
         /// <summary>
         /// RRREntityNameRRR_
         /// </summary>
-        [Alias("RRREntityNameRRR_Plural_")]
+        [Alias(DatabaseConfiguration.RRREntityNameRRR_Plural_TableName)]
         public class RRREntityNameRRR_
         {
             /// <summary>
