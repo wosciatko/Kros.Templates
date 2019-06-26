@@ -11,7 +11,7 @@ namespace Kros.CqrsTemplate.Application.Commands
         /// Ctor.
         /// </summary>
         /// <param name="id">RRREntityNameRRR_ id.</param>
-        public DeleteRRREntityNameRRR_Command(int id)
+        public DeleteRRREntityNameRRR_Command(long id)
         {
             Id = id;
         }
@@ -19,6 +19,6 @@ namespace Kros.CqrsTemplate.Application.Commands
         /// <summary>
         /// Id.
         /// </summary>
-        public int Id { get; }
+        public long Id { get; }
     }
 }
