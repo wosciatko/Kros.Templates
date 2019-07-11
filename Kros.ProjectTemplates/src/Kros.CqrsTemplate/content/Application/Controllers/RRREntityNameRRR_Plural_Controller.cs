@@ -38,7 +38,7 @@ namespace Kros.CqrsTemplate.Application.Controllers
         /// <response code="403">
         /// Forbidden when user don't have permission for RRREntityNameRRR_ with <paramref name="id"/>.
         /// </response>
-        /// <response code="404">If ToDo with id <paramref name="id"/> doesn't exist.</response>
+        /// <response code="404">If RRREntityNameRRR_ with id <paramref name="id"/> doesn't exist.</response>
         [HttpGet("{id}", Name = nameof(GetRRREntityNameRRR_))]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetRRREntityNameRRR_Query.RRREntityNameRRR_))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -58,7 +58,7 @@ namespace Kros.CqrsTemplate.Application.Controllers
         /// </returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult> CreateToDo(CreateRRREntityNameRRR_Command command)
+        public async Task<ActionResult> CreateRRREntityNameRRR_(CreateRRREntityNameRRR_Command command)
             => await this.SendCreateCommand(command, nameof(GetRRREntityNameRRR_));
 
         /// <summary>
