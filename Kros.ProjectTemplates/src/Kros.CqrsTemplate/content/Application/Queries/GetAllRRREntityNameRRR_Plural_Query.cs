@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Kros.CqrsTemplate.Application.Queries
 {
     /// <summary>
-    /// Get all RRREntityNameRRR_Plural.
+    /// Get all RRREntityNameRRR_Plural_.
     /// </summary>
     public class GetAllRRREntityNameRRR_Plural_Query : IRequest<IEnumerable<GetAllRRREntityNameRRR_Plural_Query.RRREntityNameRRR_>>
     {
