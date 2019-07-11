@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Kros.Esw.Authorization": {
+    "Kros.CqrsTemplate": {
       "commandName": "Project",
       "launchBrowser": false,
       "environmentVariables": {
