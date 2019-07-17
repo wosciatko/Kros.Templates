@@ -331,3 +331,6 @@ ASALocalRun/
 
 #Add launchSetings.json - ports are important for localhost
 !**/Properties/launchSettings.json
+
+#Ignore local settings
+appsettings.local.json
