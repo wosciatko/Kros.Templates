@@ -1,19 +1,17 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using Kros.AspNetCore.Authorization;
+using Kros.AspNetCore;
 
 namespace Kros.CqrsTemplate.Application.Controllers
 {
     /// <summary>
     /// SecurityTest controller.
     /// </summary>
-    [Route("api/[controller]")]
-    [ApiController]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public class SecurityTestController : ControllerBase
+    public class SecurityTestController : ApiBaseController
     {
         /// <summary>
         /// Authorized endpoint.
