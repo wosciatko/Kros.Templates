@@ -1,8 +1,8 @@
-﻿using Kros.CqrsTemplate.Application.Commands;
+﻿using Kros.AspNetCore;
+using Kros.CqrsTemplate.Application.Commands;
 using Kros.CqrsTemplate.Application.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,13 +11,11 @@ namespace Kros.CqrsTemplate.Application.Controllers
     /// <summary>
     /// RRREntityNameRRR_Plural_ controller
     /// </summary>
-    [Route("api/[controller]")]
-    [ApiController]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public class RRREntityNameRRR_Plural_Controller : ControllerBase
+    public class RRREntityNameRRR_Plural_Controller : ApiBaseController
     {
         /// <summary>
         /// Get RRREntityNameRRR_Plural_.
