@@ -12,7 +12,7 @@ It also creates basic commands, queries, a repository for entity that you can na
 2. Create directory and create your CQRS project.
    `dotnet new kros-cqrs --entityName Person --entityNamePlural People`
    dotnet-cli by this template create runnable project.
-4. Change connection string in `appsettings.local.json` to your `SQL Server`.
+3. Change connection string in `appsettings.local.json` to your `SQL Server`.
 
 ```
  "ConnectionString": {
@@ -27,6 +27,21 @@ It also creates basic commands, queries, a repository for entity that you can na
     },
     "AutoMigrate": "True"
   }
+```
+4. Add settings to `appsettings.local.json` for your `Identity Server`.
+
+```
+ "IdentityServerHandlers": [
+     {
+         "AuthenticationScheme": "",
+         "ApiName": "",
+         "AuthorityUrl": "",
+         "Proxy": {
+             "Address": ""
+         },
+         "RequireHttpsMetadata": true
+     }
+ ]
 ```
 
 5. Run and enjoy.
