@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.BuilderMiddlewares;
 using Kros.AspNetCore;
 using Microsoft.Extensions.Logging;
 using Kros.Swagger.Extensions;
+using Kros.Identity.Extensions;
 
 namespace Kros.CqrsTemplate
 {
@@ -29,6 +30,8 @@ namespace Kros.CqrsTemplate
         public override void ConfigureServices(IServiceCollection services)
         {
             base.ConfigureServices(services);
+
+            services.AddIdentityServerAuthentication(Configuration);
 
             services.AddWebApi()
                 .AddFluentValidation();
@@ -64,6 +67,7 @@ namespace Kros.CqrsTemplate
             }
 
             app.UseErrorHandling();
+            app.UseAuthentication();
             app.UseKormMigrations();
             app.UseMvc();
 

@@ -1,8 +1,8 @@
-﻿using Kros.CqrsTemplate.Application.Commands;
+﻿using Kros.AspNetCore;
+using Kros.CqrsTemplate.Application.Commands;
 using Kros.CqrsTemplate.Application.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,13 +11,11 @@ namespace Kros.CqrsTemplate.Application.Controllers
     /// <summary>
     /// RRREntityNameRRR_Plural_ controller
     /// </summary>
-    [Route("api/[controller]")]
-    [ApiController]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public class RRREntityNameRRR_Plural_Controller : ControllerBase
+    public class RRREntityNameRRR_Plural_Controller : ApiBaseController
     {
         /// <summary>
         /// Get RRREntityNameRRR_Plural_.
@@ -38,7 +36,7 @@ namespace Kros.CqrsTemplate.Application.Controllers
         /// <response code="403">
         /// Forbidden when user don't have permission for RRREntityNameRRR_ with <paramref name="id"/>.
         /// </response>
-        /// <response code="404">If ToDo with id <paramref name="id"/> doesn't exist.</response>
+        /// <response code="404">If RRREntityNameRRR_ with id <paramref name="id"/> doesn't exist.</response>
         [HttpGet("{id}", Name = nameof(GetRRREntityNameRRR_))]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetRRREntityNameRRR_Query.RRREntityNameRRR_))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -58,7 +56,7 @@ namespace Kros.CqrsTemplate.Application.Controllers
         /// </returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult> CreateToDo(CreateRRREntityNameRRR_Command command)
+        public async Task<ActionResult> CreateRRREntityNameRRR_(CreateRRREntityNameRRR_Command command)
             => await this.SendCreateCommand(command, nameof(GetRRREntityNameRRR_));
 
         /// <summary>

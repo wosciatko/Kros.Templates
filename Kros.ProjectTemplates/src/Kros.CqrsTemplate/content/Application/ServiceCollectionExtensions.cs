@@ -1,12 +1,10 @@
 ﻿using FluentValidation.AspNetCore;
-using Microsoft.Extensions.Configuration;
+using Kros.CqrsTemplate.Infrastructure;
 using Kros.KORM.Extensions.Asp;
-using System.Reflection;
-using MediatR;
 using Kros.MediatR.Extensions;
-using System.IO;
-using Swashbuckle.AspNetCore.Swagger;
-using System;
+using MediatR;
+using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -34,6 +32,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="configuration">Configuration.</param>
         public static void AddKormDatabase(this IServiceCollection services, IConfiguration configuration)
             => services.AddKorm(configuration)
+                .UseDatabaseConfiguration<DatabaseConfiguration>()
                 .InitDatabaseForIdGenerator()
                 .AddKormMigrations()
                 .Migrate();
