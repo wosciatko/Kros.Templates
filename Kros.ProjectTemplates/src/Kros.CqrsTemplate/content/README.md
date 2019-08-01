@@ -15,18 +15,9 @@ It also creates basic commands, queries, a repository for entity that you can na
 3. Change connection string in `appsettings.local.json` to your `SQL Server`.
 
 ```
- "ConnectionString": {
-    "ProviderName": "System.Data.SqlClient",
-    "ConnectionString": "Server={serverName};Initial Catalog={databaseName};Integrated Security=True;"
-  },
-
-  "KormMigrations": {
-    "ConnectionString": {
-      "ProviderName": "System.Data.SqlClient",
-      "ConnectionString": "Server={serverName};Initial Catalog={databaseName};Integrated Security=True;"
-    },
-    "AutoMigrate": "True"
-  }
+ "ConnectionStrings": {
+    "DefaultConnection": "Server={serverName};Initial Catalog={databaseName};Integrated Security=True;KormAutoMigrate=true;"
+ }
 ```
 4. Add settings to `appsettings.local.json` for your `Identity Server`.
 

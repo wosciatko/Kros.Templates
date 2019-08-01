@@ -34,7 +34,7 @@ namespace Microsoft.Extensions.DependencyInjection
             => services.AddKorm(configuration)
                 .UseDatabaseConfiguration<DatabaseConfiguration>()
                 .InitDatabaseForIdGenerator()
-                .AddKormMigrations(configuration, o =>
+                .AddKormMigrations(o =>
                 {
                     o.AddAssemblyScriptsProvider(Assembly.GetEntryAssembly(), "Kros.CqrsTemplate.SqlScripts");
                 })
