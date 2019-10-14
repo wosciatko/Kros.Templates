@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Kros.AspNetCore;
+using Kros.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Kros.AspNetCore.Authorization;
-using Kros.AspNetCore;
 
 namespace Kros.CqrsTemplate.Application.Controllers
 {
     /// <summary>
     /// SecurityTest controller.
     /// </summary>
+    [Authorize(AuthenticationSchemes = JwtAuthorizationHelper.JwtSchemeName)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public class SecurityTestController : ApiBaseController

@@ -1,5 +1,6 @@
 ﻿using FluentValidation.AspNetCore;
 using Kros.AspNetCore;
+using Kros.AspNetCore.Authorization;
 using Kros.AspNetCore.HealthChecks;
 using Kros.Identity.Extensions;
 using Kros.Swagger.Extensions;
@@ -38,6 +39,8 @@ namespace Kros.CqrsTemplate
 
             services.AddWebApi()
                 .AddFluentValidation();
+
+            services.AddApiJwtAuthentication(JwtAuthorizationHelper.JwtSchemeName, Configuration);
 
             services.AddKormDatabase(Configuration);
             services.AddMediatRDependencies();

@@ -1,6 +1,8 @@
 ﻿using Kros.AspNetCore;
+using Kros.AspNetCore.Authorization;
 using Kros.CqrsTemplate.Application.Commands;
 using Kros.CqrsTemplate.Application.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ namespace Kros.CqrsTemplate.Application.Controllers
     /// <summary>
     /// RRREntityNameRRR_Plural_ controller
     /// </summary>
+    [Authorize(AuthenticationSchemes = JwtAuthorizationHelper.JwtSchemeName)]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
