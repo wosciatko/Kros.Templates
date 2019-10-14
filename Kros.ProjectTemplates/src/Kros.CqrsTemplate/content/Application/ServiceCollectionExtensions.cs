@@ -4,6 +4,7 @@ using Kros.KORM.Extensions.Asp;
 using Kros.MediatR.Extensions;
 using MediatR;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -47,5 +48,19 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddMediatRDependencies(this IServiceCollection services)
             => services.AddMediatR(Assembly.GetExecutingAssembly())
                 .AddMediatRNullCheckPostProcessor();
+
+        /// <summary>
+        /// Add Health checks.
+        /// </summary>
+        /// <param name="services">DI container.</param>
+        /// <param name="configuration">Configuration.</param>
+        public static IServiceCollection AddHealthChecks(this IServiceCollection services, IConfiguration configuration)
+        {
+            return services.AddHealthChecks()
+                .AddCheck(" [Full API Name]", () => HealthCheckResult.Healthy(), tags: new[] { "api" })
+                .AddSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                    name: $" [API Name] database",
+                    tags: new[] { "db", "sql" }).Services;
+        }
     }
 }

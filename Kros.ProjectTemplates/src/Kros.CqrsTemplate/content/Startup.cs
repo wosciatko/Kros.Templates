@@ -1,9 +1,11 @@
 ﻿using FluentValidation.AspNetCore;
 using Kros.AspNetCore;
+using Kros.AspNetCore.HealthChecks;
 using Kros.Identity.Extensions;
 using Kros.Swagger.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.BuilderMiddlewares;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -45,10 +47,12 @@ namespace Kros.CqrsTemplate
                 .AddClasses()
                 .AsMatchingInterface());
 
-            services.AddSwaggerDocumentation(Configuration, c =>
-            {
-                c.AddFluentValidationRules();
-            });
+            services
+                .AddSwaggerDocumentation(Configuration, c =>
+                {
+                    c.AddFluentValidationRules();
+                })
+                .AddHealthChecks();
         }
 
         /// <summary>
@@ -71,6 +75,12 @@ namespace Kros.CqrsTemplate
             }
 
             app.UseErrorHandling();
+            app.UseHealthChecks("/health", new HealthCheckOptions
+            {
+                Predicate = _ => true,
+                ResponseWriter = HealthCheckResponseWriter.WriteHealthCheckResponseAsync
+            });
+
             app.UseAuthentication();
             app.UseKormMigrations();
             app.UseMvc();
