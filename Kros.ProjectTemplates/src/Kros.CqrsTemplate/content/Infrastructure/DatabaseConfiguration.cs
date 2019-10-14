@@ -24,7 +24,9 @@ namespace Kros.CqrsTemplate.Infrastructure
             modelBuilder.Entity<RRREntityNameRRR_>()
                 .HasTableName(RRREntityNameRRR_Plural_TableName)
                 .HasPrimaryKey(f => f.Id).AutoIncrement()
-                .UseConverterForProperties<string>(NullAndTrimStringConverter.ConvertNull);
+                .UseConverterForProperties<string>(NullAndTrimStringConverter.ConvertNull)
+                .Property(f => f.CreatedTimestamp).UseCurrentTimeValueGenerator(ValueGenerated.OnInsert)
+                .Property(f => f.LastModifiedTimestamp).UseCurrentTimeValueGenerator(ValueGenerated.OnInsertOrUpdate);
         }
     }
 }
