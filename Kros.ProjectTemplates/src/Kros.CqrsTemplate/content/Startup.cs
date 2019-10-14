@@ -52,7 +52,8 @@ namespace Kros.CqrsTemplate
                 {
                     c.AddFluentValidationRules();
                 })
-                .AddHealthChecks();
+                .AddHealthChecks(Configuration)
+                .AddApplicationInsights(Configuration);
         }
 
         /// <summary>

@@ -23,6 +23,7 @@
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="2.2.1" />
     <PackageReference Include="FluentValidation" Version="8.4.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.4.0" />
+    <PackageReference Include="Kros.ApplicationInsights.Extensions" Version="1.0.0" />
 	<PackageReference Include="Kros.Identity.Extensions" Version="0.4.1" />
     <PackageReference Include="Kros.AspNetCore" Version="1.5.0" />
     <PackageReference Include="Kros.KORM" Version="4.0.0-alpha.11" />
