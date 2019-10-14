@@ -1,19 +1,20 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using FluentValidation.AspNetCore;
+using Kros.AspNetCore;
+using Kros.Identity.Extensions;
+using Kros.Swagger.Extensions;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.BuilderMiddlewares;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.BuilderMiddlewares;
-using Kros.AspNetCore;
 using Microsoft.Extensions.Logging;
-using Kros.Swagger.Extensions;
-using Kros.Identity.Extensions;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Kros.CqrsTemplate
 {
     /// <summary>
     /// Startup.
     /// </summary>
-    public class Startup: BaseStartup
+    public class Startup : BaseStartup
     {
         /// <summary>
         /// Ctor.
@@ -44,7 +45,10 @@ namespace Kros.CqrsTemplate
                 .AddClasses()
                 .AsMatchingInterface());
 
-            services.AddSwaggerDocumentation(Configuration);
+            services.AddSwaggerDocumentation(Configuration, c =>
+            {
+                c.AddFluentValidationRules();
+            });
         }
 
         /// <summary>
