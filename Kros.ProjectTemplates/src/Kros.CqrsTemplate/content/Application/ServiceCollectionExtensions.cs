@@ -14,6 +14,10 @@ namespace Microsoft.Extensions.DependencyInjection
     /// </summary>
     public static class ServiceCollectionExtensions
     {
+        private const string ApiName = "Kros.CqrsTemplate Api";
+        private const string ApiVersion = "v1";
+        private const string FullApiName = ApiName + " " + ApiVersion;
+
         /// <summary>
         /// Register fluent validation.
         /// </summary>
@@ -55,12 +59,10 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">DI container.</param>
         /// <param name="configuration">Configuration.</param>
         public static IServiceCollection AddHealthChecks(this IServiceCollection services, IConfiguration configuration)
-        {
-            return services.AddHealthChecks()
-                .AddCheck(" [Full API Name]", () => HealthCheckResult.Healthy(), tags: new[] { "api" })
+            => services.AddHealthChecks()
+                .AddCheck($" {FullApiName}", () => HealthCheckResult.Healthy(), tags: new[] { "api" })
                 .AddSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                    name: $" [API Name] database",
+                    name: $" {ApiName} database",
                     tags: new[] { "db", "sql" }).Services;
-        }
     }
 }

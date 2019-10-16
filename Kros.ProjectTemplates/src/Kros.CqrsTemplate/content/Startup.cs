@@ -2,7 +2,6 @@
 using Kros.AspNetCore;
 using Kros.AspNetCore.Authorization;
 using Kros.AspNetCore.HealthChecks;
-using Kros.Identity.Extensions;
 using Kros.Swagger.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.BuilderMiddlewares;
@@ -34,8 +33,6 @@ namespace Kros.CqrsTemplate
         public override void ConfigureServices(IServiceCollection services)
         {
             base.ConfigureServices(services);
-
-            services.AddIdentityServerAuthentication(Configuration);
 
             services.AddWebApi()
                 .AddFluentValidation();
