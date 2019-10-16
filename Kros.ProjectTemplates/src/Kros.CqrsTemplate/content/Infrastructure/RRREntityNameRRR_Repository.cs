@@ -8,7 +8,7 @@ namespace Kros.CqrsTemplate.Infrastructure
     /// <summary>
     /// Repository for persistating <see cref="RRREntityNameRRR_"/>.
     /// </summary>
-    public class RRREntityNameRRR_Repository: IRRREntityNameRRR_Repository
+    public class RRREntityNameRRR_Repository : IRRREntityNameRRR_Repository
     {
         private IDatabase _database;
 
@@ -23,33 +23,14 @@ namespace Kros.CqrsTemplate.Infrastructure
 
         /// <inheritdoc />
         public async Task CreateRRREntityNameRRR_Async(RRREntityNameRRR_ item)
-        {
-            var dbSet = _database.Query<RRREntityNameRRR_>().AsDbSet();
-
-            dbSet.Add(item);
-
-            await dbSet.CommitChangesAsync();
-        }
+            => await _database.AddAsync(item);
 
         /// <inheritdoc />
         public async Task UpdateRRREntityNameRRR_Async(RRREntityNameRRR_ item)
-        {
-            var dbSet = _database
-                .Query<RRREntityNameRRR_>()
-                .AsDbSet();
-
-            dbSet.Edit(item);
-
-            await dbSet.CommitChangesAsync();
-        }
+            => await _database.EditAsync(item);
 
         /// <inheritdoc />
         public async Task DeleteRRREntityNameRRR_Async(long id)
-        {
-            var dbSet = _database.Query<RRREntityNameRRR_>().AsDbSet();
-            dbSet.Delete(new RRREntityNameRRR_() { Id = id});
-
-            await dbSet.CommitChangesAsync();
-        }
+            => await _database.DeleteAsync<RRREntityNameRRR_>(id);
     }
 }

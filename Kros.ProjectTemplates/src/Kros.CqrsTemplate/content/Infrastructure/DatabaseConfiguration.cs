@@ -1,5 +1,6 @@
 ﻿using Kros.CqrsTemplate.Domain;
 using Kros.KORM;
+using Kros.KORM.Converter;
 using Kros.KORM.Metadata;
 
 namespace Kros.CqrsTemplate.Infrastructure
@@ -7,7 +8,7 @@ namespace Kros.CqrsTemplate.Infrastructure
     /// <summary>
     /// Configure database for KORM.
     /// </summary>
-    public class DatabaseConfiguration: DatabaseConfigurationBase
+    public class DatabaseConfiguration : DatabaseConfigurationBase
     {
         /// <summary>
         /// Name of RRREntityNameRRR_Plural_ table in database.
@@ -22,7 +23,10 @@ namespace Kros.CqrsTemplate.Infrastructure
         {
             modelBuilder.Entity<RRREntityNameRRR_>()
                 .HasTableName(RRREntityNameRRR_Plural_TableName)
-                .HasPrimaryKey(f => f.Id).AutoIncrement();
+                .HasPrimaryKey(f => f.Id).AutoIncrement()
+                .UseConverterForProperties<string>(NullAndTrimStringConverter.ConvertNull)
+                .Property(f => f.CreatedTimestamp).UseCurrentTimeValueGenerator(ValueGenerated.OnInsert)
+                .Property(f => f.LastModifiedTimestamp).UseCurrentTimeValueGenerator(ValueGenerated.OnInsertOrUpdate);
         }
     }
 }

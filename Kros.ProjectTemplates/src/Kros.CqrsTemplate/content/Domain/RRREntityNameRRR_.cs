@@ -1,5 +1,4 @@
-﻿using Kros.KORM.Metadata;
-using Kros.KORM.Metadata.Attribute;
+﻿using System;
 
 namespace Kros.CqrsTemplate.Domain
 {
@@ -12,5 +11,15 @@ namespace Kros.CqrsTemplate.Domain
         /// Id.
         /// </summary>
         public long Id { get; set; }
+
+        /// <summary>
+        /// DateTimeOffset of entity creation.
+        /// </summary>
+        public DateTimeOffset CreatedTimestamp { get; set; }
+
+        /// <summary>
+        /// DateTimeOffset of last entity update.
+        /// </summary>
+        public DateTimeOffset LastModifiedTimestamp { get; set; }
     }
 }

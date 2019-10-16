@@ -1,19 +1,22 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using FluentValidation.AspNetCore;
+using Kros.AspNetCore;
+using Kros.AspNetCore.Authorization;
+using Kros.AspNetCore.HealthChecks;
+using Kros.Swagger.Extensions;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.BuilderMiddlewares;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.BuilderMiddlewares;
-using Kros.AspNetCore;
 using Microsoft.Extensions.Logging;
-using Kros.Swagger.Extensions;
-using Kros.Identity.Extensions;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Kros.CqrsTemplate
 {
     /// <summary>
     /// Startup.
     /// </summary>
-    public class Startup: BaseStartup
+    public class Startup : BaseStartup
     {
         /// <summary>
         /// Ctor.
@@ -31,10 +34,10 @@ namespace Kros.CqrsTemplate
         {
             base.ConfigureServices(services);
 
-            services.AddIdentityServerAuthentication(Configuration);
-
             services.AddWebApi()
                 .AddFluentValidation();
+
+            services.AddApiJwtAuthentication(JwtAuthorizationHelper.JwtSchemeName, Configuration);
 
             services.AddKormDatabase(Configuration);
             services.AddMediatRDependencies();
@@ -44,7 +47,13 @@ namespace Kros.CqrsTemplate
                 .AddClasses()
                 .AsMatchingInterface());
 
-            services.AddSwaggerDocumentation(Configuration);
+            services
+                .AddSwaggerDocumentation(Configuration, c =>
+                {
+                    c.AddFluentValidationRules();
+                })
+                .AddHealthChecks(Configuration)
+                .AddApplicationInsights(Configuration);
         }
 
         /// <summary>
@@ -67,6 +76,12 @@ namespace Kros.CqrsTemplate
             }
 
             app.UseErrorHandling();
+            app.UseHealthChecks("/health", new HealthCheckOptions
+            {
+                Predicate = _ => true,
+                ResponseWriter = HealthCheckResponseWriter.WriteHealthCheckResponseAsync
+            });
+
             app.UseAuthentication();
             app.UseKormMigrations();
             app.UseMvc();

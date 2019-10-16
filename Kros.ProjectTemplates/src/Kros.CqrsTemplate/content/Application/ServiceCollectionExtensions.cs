@@ -4,6 +4,7 @@ using Kros.KORM.Extensions.Asp;
 using Kros.MediatR.Extensions;
 using MediatR;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -13,6 +14,10 @@ namespace Microsoft.Extensions.DependencyInjection
     /// </summary>
     public static class ServiceCollectionExtensions
     {
+        private const string ApiName = "Kros.CqrsTemplate Api";
+        private const string ApiVersion = "v1";
+        private const string FullApiName = ApiName + " " + ApiVersion;
+
         /// <summary>
         /// Register fluent validation.
         /// </summary>
@@ -47,5 +52,17 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddMediatRDependencies(this IServiceCollection services)
             => services.AddMediatR(Assembly.GetExecutingAssembly())
                 .AddMediatRNullCheckPostProcessor();
+
+        /// <summary>
+        /// Add Health checks.
+        /// </summary>
+        /// <param name="services">DI container.</param>
+        /// <param name="configuration">Configuration.</param>
+        public static IServiceCollection AddHealthChecks(this IServiceCollection services, IConfiguration configuration)
+            => services.AddHealthChecks()
+                .AddCheck($" {FullApiName}", () => HealthCheckResult.Healthy(), tags: new[] { "api" })
+                .AddSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                    name: $" {ApiName} database",
+                    tags: new[] { "db", "sql" }).Services;
     }
 }
