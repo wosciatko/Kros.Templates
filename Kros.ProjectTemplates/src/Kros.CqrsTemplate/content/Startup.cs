@@ -85,6 +85,7 @@ namespace Kros.CqrsTemplate
             app.UseAuthentication();
             app.UseKormMigrations();
             app.UseMvc();
+            app.UseRobotsTxt(builder => builder.DenyAll());
 
             app.UseSwaggerDocumentation(Configuration);
         }
