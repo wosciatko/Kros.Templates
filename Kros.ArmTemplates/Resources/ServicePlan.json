@@ -4,6 +4,25 @@
     "parameters": {
         "servicePlanName": {
             "type": "string"
+        },
+        "servicePlanSku": {
+            "type": "string",
+            "allowedValues": [
+                "S1",
+                "S2",
+                "S3",
+                "P1v2",
+                "P2v2",
+                "P3v2",
+                "PC2",
+                "PC3",
+                "PC4",
+                "I1",
+                "I2",
+                "I3"
+
+            ],
+            "defaultValue": "P2v2"
         }
     },
     "variables": {},
@@ -20,11 +39,7 @@
                 "Esw": ""
             },
             "sku": {
-                "name": "P2v2",
-                "tier": "PremiumV2",
-                "size": "P2v2",
-                "family": "Pv2",
-                "capacity": 1
+                "name": "[parameters('servicePlanSku')]"
             },
             "kind": "app",
             "properties": {

@@ -34,7 +34,16 @@
             "kind": "app",
             "properties": {
                 "serverFarmId": "[parameters('servicePlanId')]",
-                "httpsOnly": true
+                "httpsOnly": true,
+                "siteConfig": {
+                    "metadata": [
+                        {
+                            "name": "CURRENT_STACK",
+                            "value": "dotnetcore"
+                        }
+                    ],
+                    "alwaysOn": true
+                }
             },
             "resources": [
                 {
